@@ -70,7 +70,7 @@
                 <manifest>
                   <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                   <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                  <mainClass>es.us.isa.botica.fishbowl.fish.ManagerBotLauncher</mainClass>
+                  <mainClass>es.us.isa.botica.fishbowl.manager.ManagerBotLauncher</mainClass>
                 </manifest>
               </archive>
               <finalName>${project.artifactId}</finalName>
