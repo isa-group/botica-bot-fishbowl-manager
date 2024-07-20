@@ -1,6 +1,6 @@
 FROM openjdk:21
 
 WORKDIR /app
-COPY target/fishbowl-manager.jar /app/
+COPY target/bot.jar /app/
 
-CMD ["java", "-jar", "/app/fishbowl-manager.jar"]
+CMD ["java", "-jar", "/app/bot.jar"]
