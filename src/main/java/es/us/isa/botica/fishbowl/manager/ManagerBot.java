@@ -6,6 +6,10 @@ import es.us.isa.botica.fishbowl.Position;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +23,14 @@ public class ManagerBot extends AbstractBotApplication {
   private int fileVersion = 1;
 
   @Override
+  public void configure() {
+    int delay = Integer.parseInt(System.getenv("FISHBOWL_FILE_UPDATE_SECONDS"));
+
+    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+    executor.scheduleWithFixedDelay(this::saveFile, delay, delay, TimeUnit.SECONDS);
+  }
+
+  @Override
   public void onOrderReceived(String raw) {
     JSONObject message = new JSONObject(raw);
 
@@ -28,7 +40,7 @@ public class ManagerBot extends AbstractBotApplication {
 
     log.info("Fish {} moved! {} -> {}", fish, lastPosition, newPosition);
     this.fishbowl.setPosition(fish, newPosition);
-    this.saveFile();
+    log.info("\n{}", this.fishbowl.render());
   }
 
   private void saveFile() {
