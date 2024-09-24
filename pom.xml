@@ -20,7 +20,7 @@
     <dependency>
       <groupId>io.github.isa-group.botica</groupId>
       <artifactId>botica-lib-java</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>0.0.4</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.json/json -->
