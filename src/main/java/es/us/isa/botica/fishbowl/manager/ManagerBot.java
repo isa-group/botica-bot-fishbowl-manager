@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -28,6 +27,8 @@ public class ManagerBot extends AbstractBotApplication {
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     executor.scheduleWithFixedDelay(this::saveFile, delay, delay, TimeUnit.SECONDS);
+
+    getShutdownHandler().registerShutdownRequestHook(request -> executor.shutdown());
   }
 
   @Override
