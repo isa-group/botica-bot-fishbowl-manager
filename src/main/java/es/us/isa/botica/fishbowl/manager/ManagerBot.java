@@ -34,9 +34,7 @@ public class ManagerBot extends BaseBot {
   }
 
   @DefaultOrderHandler
-  public void onOrderReceived(String raw) {
-    JSONObject message = new JSONObject(raw);
-
+  public void onOrderReceived(JSONObject message) {
     String fish = message.getString("silhouette");
     Position lastPosition = this.fishbowl.getPosition(fish);
     Position newPosition = new Position(message.getInt("x"), message.getInt("y"));
