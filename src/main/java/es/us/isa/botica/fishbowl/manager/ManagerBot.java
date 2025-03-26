@@ -1,7 +1,7 @@
 package es.us.isa.botica.fishbowl.manager;
 
 import es.us.isa.botica.bot.BaseBot;
-import es.us.isa.botica.bot.DefaultOrderHandler;
+import es.us.isa.botica.bot.OrderHandler;
 import es.us.isa.botica.bot.shutdown.ShutdownRequestHandler;
 import es.us.isa.botica.bot.shutdown.ShutdownResponse;
 import es.us.isa.botica.fishbowl.Fishbowl;
@@ -28,13 +28,12 @@ public class ManagerBot extends BaseBot {
   @Override
   public void configure() {
     int delay = Integer.parseInt(System.getenv("FISHBOWL_FILE_UPDATE_SECONDS"));
-
     this.executor = Executors.newSingleThreadScheduledExecutor();
     this.executor.scheduleWithFixedDelay(this::saveFile, delay, delay, TimeUnit.SECONDS);
   }
 
-  @DefaultOrderHandler
-  public void onOrderReceived(JSONObject message) {
+  @OrderHandler("register_movement")
+  public void registerMovement(JSONObject message) {
     String fish = message.getString("silhouette");
     Position lastPosition = this.fishbowl.getPosition(fish);
     Position newPosition = new Position(message.getInt("x"), message.getInt("y"));

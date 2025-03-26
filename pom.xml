@@ -12,7 +12,7 @@
   <properties>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
-    <mainClass>es.us.isa.botica.fishbowl.manager.ManagerBotBootstrap</mainClass>
+    <mainClass>es.us.isa.botica.fishbowl.manager.ManagerBotLauncher</mainClass>
     <imageTag>botica-bot-fishbowl-manager</imageTag>
   </properties>
 
@@ -20,7 +20,7 @@
     <dependency>
       <groupId>io.github.isa-group.botica</groupId>
       <artifactId>botica-lib-java</artifactId>
-      <version>0.3.2</version>
+      <version>0.4.0</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.json/json -->
